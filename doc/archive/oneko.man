@@ -50,6 +50,9 @@ run faster.
 Specify the distance where cat jumps at one move in dot resolution.
 Default is 16.
 .TP
+.BI \-vit  " vitesse"
+Indique a quel vitesse le personnage avance/réagit, la valeur doit être comprise entre 1 et 10
+.TP
 .BI \-idle " speed"
 Specify the threshold of the speed which ``mouse'' running away
 to wake cat up.

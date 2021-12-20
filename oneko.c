@@ -65,6 +65,7 @@ char    *Foreground = NULL;             /*   foreground */
 char    *Background = NULL;             /*   background */
 long    IntervalTime = 0L;              /*   time       */
 double  NekoSpeed = (double)0;          /*   speed      */
+int     Outplayed = 0;                  /* intuitive spd*/
 int     IdleSpace = 0;                  /*   idle       */
 int     NekoMoyou = NOTDEFINED;         /*   tora       */
 int     NoShape = NOTDEFINED;           /*   noshape    */
@@ -1419,6 +1420,20 @@ GetArguments(int argc, char *argv[], char *theDisplayName)
       ArgCounter++;
       if (ArgCounter < argc) {
         IntervalTime = atol(argv[ArgCounter]);
+      } else {
+        fprintf(stderr, "%s: -time option error.\n", ProgramName);
+        exit(1);
+      }
+    }
+    else if ((strcmp(argv[ArgCounter], "-vit") == 0) ||
+             (strcmp(argv[ArgCounter], "-outplayed") == 0)) {
+      ArgCounter++;
+      if (ArgCounter < argc) {
+        Outplayed = atol(argv[ArgCounter]);
+        if(Outplayed > 10) {
+          Outplayed = 10;
+        }
+        IntervalTime = 175000/Outplayed;
       } else {
         fprintf(stderr, "%s: -time option error.\n", ProgramName);
         exit(1);
